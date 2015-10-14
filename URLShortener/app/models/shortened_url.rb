@@ -26,7 +26,25 @@ class ShortenedUrl < ActiveRecord::Base
   end
 
   def self.create_for_user_and_long_url!(user, long_url)
-    ShortenedUrl.create!(long_url: long_url, submitter_id: user, short_url: ShortenedUrl.random_code)
+    ShortenedUrl.create!(long_url: long_url, submitter_id: user.id, short_url: ShortenedUrl.random_code)
   end
+
+  belongs_to(
+    :submitter,
+    :class_name => "User",
+    :foreign_key => :submitter_id,
+    :primary_key => :id
+  )
+  has_many(
+    :visits,
+    class_name: "Visit",
+    foreign_key: :short_url_id,
+    primary_key: :id
+  )
+  has_many(
+    :visitors,
+    through: :visits,
+    source: :visitor
+  )
 
 end
