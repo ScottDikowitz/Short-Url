@@ -29,6 +29,16 @@ class ShortenedUrl < ActiveRecord::Base
     ShortenedUrl.create!(long_url: long_url, submitter_id: user.id, short_url: ShortenedUrl.random_code)
   end
 
+
+  def num_clicks
+    Visit.all.select{ |visit| visit.short_url_id == self.id}.count
+  end
+
+  def num_uniques
+    a = Visit.all.select{ |visit| visit.short_url_id == self.id}
+    a.uniq.count
+  end
+
   belongs_to(
     :submitter,
     :class_name => "User",
