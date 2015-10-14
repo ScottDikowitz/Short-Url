@@ -103,3 +103,4 @@ SQLite3::SQLException: no such column: users.course_id: SELECT  "users".* FROM "
   [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1  [["id", 1]]
   [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
   [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
